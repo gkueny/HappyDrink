@@ -3,7 +3,6 @@ import logo                 from './logo.svg'
 import './App.css'
 
 import { etablishments }     from './fixtures'
-import EtablishmentComponent from './EtablishmentComponent'
 
 class App extends Component {
 
@@ -11,11 +10,14 @@ class App extends Component {
 
         const listEtablishment = etablishments.map( (etablishment) => {
             return (
-                <li className = 'etablishment'>
+                <li
+                    key         = { etablishment.id }
+                    className   = 'etablishment'
+                >
                     <h3>{ etablishment.name }</h3>
-                    <p>
-                        { etablishment.description }
-                    </p>
+
+                    { etablishment.description }
+
                 </li>
             )
         })
@@ -26,9 +28,9 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h2>Welcome to { this.props.title }</h2>
                 </div>
-                <p className="App-intro">
+                <div className="App-intro">
                     { listEtablishment }
-                </p>
+                </div>
 
             </div>
         );
