@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import logo                 from './logo.svg'
 import './App.css'
 
+import Etablishment         from './Etablishment'
+
 import { etablishments }     from './fixtures'
 
 class App extends Component {
@@ -10,15 +12,11 @@ class App extends Component {
 
         const listEtablishment = etablishments.map( (etablishment) => {
             return (
-                <li
-                    key         = { etablishment.id }
-                    className   = 'etablishment'
-                >
-                    <h3>{ etablishment.name }</h3>
-
-                    { etablishment.description }
-
-                </li>
+                <Etablishment
+                    key={ etablishment.id }
+                    name={ etablishment.name }
+                    description={ etablishment.description }
+                />
             )
         })
 
