@@ -5,12 +5,12 @@ class Etablishment extends Component {
     render() {
 
         return (
-            <li className='etablishment' >
+            <div className='etablishment' >
                 <h3>{ this.props.name }</h3>
 
                 { this.props.description }
 
-            </li>
+            </div>
         );
     }
 }
