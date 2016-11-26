@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logo                 from './logo.svg'
 import './App.css'
 
-import { etablishments }     from './fixtures'
+import { etablishments }     from './etablishments/fixtures'
 
 class App extends Component {
 
