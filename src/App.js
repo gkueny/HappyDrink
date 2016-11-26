@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import logo                 from './logo.svg'
-import './App.css'
+import './css/App.css'
 
 import { etablishments }     from './etablishments/fixtures'
 
