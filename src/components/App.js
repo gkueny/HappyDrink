@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import logo                 from './logo.svg'
-import './App.css'
+import logo                 from '../assets/logo.svg'
+import '../css/App.css'
 
-import Etablishment         from './Etablishment'
+import Etablishment         from './etablishments/Etablishment'
 
-import { etablishments }     from './fixtures'
+import { etablishments }     from './etablishments/fixtures'
 
 class App extends Component {
 
