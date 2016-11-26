@@ -34,8 +34,7 @@ class App extends Component {
             return (
                 <Etablishment
                     key={ etablishment.id }
-                    name={ etablishment.name }
-                    description={ etablishment.description }
+                    etablishment={ etablishment }
                 />
             )
         })

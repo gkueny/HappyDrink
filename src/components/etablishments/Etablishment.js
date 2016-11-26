@@ -6,9 +6,9 @@ class Etablishment extends Component {
 
         return (
             <div className='etablishment' >
-                <h3>{ this.props.name }</h3>
+                <h3>{ this.props.etablishment.name }</h3>
 
-                { this.props.description }
+                { this.props.etablishment.description }
 
             </div>
         );
