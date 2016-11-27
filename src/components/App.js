@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import logo                 from '../assets/logo.svg'
 import '../css/App.css'
 
-import Etablishment         from './etablishments/Etablishment'
+import Establishment         from './establishments/Establishment'
 
-import { etablishments }     from './etablishments/fixtures'
+import { establishments }     from './establishments/fixtures'
 
 class App extends Component {
 
@@ -30,11 +30,11 @@ class App extends Component {
 
     render() {
 
-        const listEtablishment = etablishments.map( (etablishment) => {
+        const listEstablishment = establishments.map( (establishment) => {
             return (
-                <Etablishment
-                    key={ etablishment.id }
-                    etablishment={ etablishment }
+                <Establishment
+                    key={ establishment.id }
+                    establishment={ establishment }
                 />
             )
         })
@@ -52,7 +52,7 @@ class App extends Component {
                     <p> <a onClick={ this.randomPseudo } >Changer le pseudo !</a> </p>
 
                     <section>
-                        { listEtablishment }
+                        { listEstablishment }
                     </section>
 
                 </div>
