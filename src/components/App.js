@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import logo                 from '../assets/logo.svg'
 import '../css/App.css'
 
-import { etablishments }    from './etablishments/fixtures'
+import { establishments }    from './establishments/fixtures'
 
 class App extends Component {
 
     render() {
 
-        const listEtablishment = etablishments.map( (etablishment) => {
+        const listEstablishment = establishments.map( (establishment) => {
             return (
                 <li
-                    key         = { etablishment.id }
-                    className   = 'etablishment'
+                    key         = { establishment.id }
+                    className   = 'establishment'
                 >
-                    <h3>{ etablishment.name }</h3>
+                    <h3>{ establishment.name }</h3>
 
-                    { etablishment.description }
+                    { establishment.description }
 
                 </li>
             )
@@ -29,7 +29,7 @@ class App extends Component {
                     <h2>Welcome to { this.props.title }</h2>
                 </div>
                 <div className="App-intro">
-                    { listEtablishment }
+                    { listEstablishment }
                 </div>
 
             </div>

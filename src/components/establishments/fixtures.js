@@ -1,4 +1,4 @@
-export const etablishments = [
+export const establishments = [
     {
         id          : "0890786GH",
         name        : "Tonton",
