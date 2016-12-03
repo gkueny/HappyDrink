@@ -17,6 +17,14 @@ class App extends Component {
 
     }
 
+    componentWillMount () {
+        console.log("componentWillMount")
+    }
+
+    componentDidMount () {
+        console.log("componentDidMount")
+    }
+
     randomPseudo = () => {
 
         let randomPseudo    = ""
@@ -33,6 +41,8 @@ class App extends Component {
     }
 
     render() {
+
+        console.log("render")
 
         const listEstablishment = establishments.map( (establishment) => {
             return (
