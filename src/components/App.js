@@ -12,18 +12,26 @@ class App extends Component {
         super(props);
 
         this.state = {
-            pseudo  : "Inconnu"
+            pseudo      : "Inconnu",
+            dataFromAPI : ""
         }
 
     }
 
-    componentWillMount () {
-        console.log("componentWillMount")
+    componentDidMount () {
+
+        fetch('https://jsonplaceholder.typicode.com/posts/1')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({
+                    dataFromAPI : responseJson.body
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
-    componentDidMount () {
-        console.log("componentDidMount")
-    }
 
     randomPseudo = () => {
 
@@ -41,8 +49,6 @@ class App extends Component {
     }
 
     render() {
-
-        console.log("render")
 
         const listEstablishment = establishments.map( (establishment) => {
             return (
@@ -69,6 +75,10 @@ class App extends Component {
 
                     <section>
                         { listEstablishment }
+                    </section>
+
+                    <section>
+                        { this.state.dataFromAPI }
                     </section>
 
                 </div>
