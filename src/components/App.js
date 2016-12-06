@@ -2,69 +2,20 @@ import React, { Component } from 'react'
 import logo                 from '../assets/logo.svg'
 import '../css/App.css'
 
-import { establishments }    from './establishments/fixtures'
-import Establishment         from './establishments/Establishment'
-
-//var $ = require('jquery');
+import EstablishmentContainer   from '../containers/EstablishmentContainer'
 
 class App extends Component {
 
-    constructor(props) {
-
-        super(props);
-
-        this.state = {
-            pseudo      : "Inconnu",
-            dataFromAPI : ""
-        }
-
-    }
-
     componentDidMount () {
 
-        // Pour que cela change à chaque appel :)
-        const random = Math.floor(Math.random() * 99) + 1
-
-        // let cpThis = this
-        // $.get( "https://jsonplaceholder.typicode.com/posts/" + random, function( data ) {
-        //     cpThis.setState({
-        //         dataFromAPI : data.body
-        //     })
-        // })
-
-        fetch('https://jsonplaceholder.typicode.com/posts/' + random)
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    dataFromAPI : responseJson.body
-                })
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-
-
-    randomPseudo = () => {
-
-        let randomPseudo    = ""
-        const possible      = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-
-        const size          = Math.floor(Math.random() * 10) + 5
-
-        for( let i=0; i < size; i++ )
-            randomPseudo += possible.charAt(Math.floor(Math.random() * possible.length))
-
-        this.setState({
-            pseudo : randomPseudo
-        })
+        this.props.getDataFromApi()
     }
 
     render() {
 
-        const listEstablishment = establishments.map( (establishment) => {
+        const listEstablishment = this.props.state.establishments.map( establishment => {
             return (
-                <Establishment
+                <EstablishmentContainer
                     key={ establishment.id }
                     establishment={ establishment }
                 />
@@ -77,26 +28,26 @@ class App extends Component {
                 <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
 
-                    <h2>Welcome "{ this.state.pseudo }" to { this.props.title }</h2>
+                    <h2>Welcome "{ this.props.state.app.pseudo }" to { this.props.title }</h2>
 
                 </div>
 
                 <div className="App-intro">
 
-                    <p> <a onClick={ this.randomPseudo } >Changer le pseudo !</a> </p>
+                    <p> <a onClick={ this.props.randomPseudo } >Changer le pseudo !</a> </p>
 
                     <section>
                         { listEstablishment }
                     </section>
 
                     <section>
-                        { this.state.dataFromAPI }
+                        { this.props.state.app.dataFromAPI }
                     </section>
 
                 </div>
 
             </div>
-        );
+        )
     }
 }
 
