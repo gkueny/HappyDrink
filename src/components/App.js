@@ -5,6 +5,8 @@ import '../css/App.css'
 import { establishments }    from './establishments/fixtures'
 import Establishment         from './establishments/Establishment'
 
+//var $ = require('jquery');
+
 class App extends Component {
 
     constructor(props) {
@@ -20,7 +22,17 @@ class App extends Component {
 
     componentDidMount () {
 
-        fetch('https://jsonplaceholder.typicode.com/posts/1')
+        // Pour que cela change à chaque appel :)
+        const random = Math.floor(Math.random() * 99) + 1
+
+        // let cpThis = this
+        // $.get( "https://jsonplaceholder.typicode.com/posts/" + random, function( data ) {
+        //     cpThis.setState({
+        //         dataFromAPI : data.body
+        //     })
+        // })
+
+        fetch('https://jsonplaceholder.typicode.com/posts/' + random)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
