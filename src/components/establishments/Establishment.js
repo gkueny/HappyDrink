@@ -113,7 +113,7 @@ class Establishment extends Component {
         return (
             <div className='establishment' >
                 <div className='establishment-favori' >
-                    <button onClick={() => this.favori()}>{ starIcon }</button>
+                    <button onClick={this.favori}>{ starIcon }</button>
                 </div>
                 <div className='establishment-description' >
                     <h3>{ this.props.establishment.name }</h3>
@@ -123,8 +123,8 @@ class Establishment extends Component {
                 <div className='establishmentLikeDislike' >
                     {/* Au clic sur le bouton on appele la fonction */}
                     {/* la syntaxe "() => this.handleClick(true)" est importante : car si l'on écrit juste this.handleClick(true), la fonction sera appelé à l'initialisation du "component" */}
-                    <button onClick={() => this.like()}>{ upIcon } </button> <span>{ this.state.likeCounter }</span>
-                    <button onClick={() => this.dislike()}>{ downIcon }</button> <span>{ this.state.dislikeCounter }</span>
+                    <button onClick={this.like}>{ upIcon } </button> <span>{ this.state.likeCounter }</span>
+                    <button onClick={this.dislike}>{ downIcon }</button> <span>{ this.state.dislikeCounter }</span>
                 </div>
 
             </div>
