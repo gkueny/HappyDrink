@@ -40,7 +40,9 @@ const mapDispatchToProps = (dispatch) => {
                 randomPseudo += possible.charAt(Math.floor(Math.random() * possible.length))
 
             dispatch(appActions.setPseudo(randomPseudo))
-        }
+        },
+
+        filter : (text) => dispatch(appActions.filter(text))
     }
 }
 

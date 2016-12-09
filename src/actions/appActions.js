@@ -19,3 +19,13 @@ export function setPseudo(pseudo) {
         }
     }
 }
+
+export function filter(text) {
+
+    return {
+        type: types.FILTER,
+        data: {
+            text : text
+        }
+    }
+}

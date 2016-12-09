@@ -7,9 +7,13 @@ import { Provider }     from 'react-redux'
 import allReducers  from './reducers'
 import AppContainer from './containers/appContainer';
 
+import { persistStore, autoRehydrate } from 'redux-persist'
+
 import './css/index.css';
 
-const store = createStore(allReducers)
+const store = createStore(allReducers, undefined, autoRehydrate())
+
+persistStore(store)
 
 ReactDOM.render(
     <Provider store={ store }>
@@ -19,4 +23,4 @@ ReactDOM.render(
     </Provider>,
 
     document.getElementById('root')
-);
+)

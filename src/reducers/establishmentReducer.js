@@ -1,4 +1,5 @@
 import * as types from '../actions/actionsTypes'
+import {REHYDRATE} from 'redux-persist/constants'
 
 import { establishments } from '../components/establishments/fixtures'
 
@@ -13,7 +14,8 @@ establishments.map((establishment) => {
         isDisliked      : false,
         likeCounter     : 0,
         dislikeCounter  : 0,
-        favori          : false
+        favori          : false,
+        visible         : true
     })
     return establishment
 })
@@ -22,6 +24,18 @@ establishments.map((establishment) => {
 const establishment = (state = {}, action) => {
 
     switch (action.type) {
+
+        case REHYDRATE:
+          return {
+              ...state,
+              visible : true
+          }
+
+        case types.FILTER :
+            return {
+                ...state,
+                visible : state.name.toUpperCase().indexOf(action.data.text.toUpperCase()) >= 0
+            }
 
         case types.LIKE :
 
@@ -66,6 +80,17 @@ const establishment = (state = {}, action) => {
 const establishmentsReducer = (state = initialState, action) => {
 
     switch (action.type) {
+
+        case REHYDRATE :
+            return action.payload.establishments.map(establishmentState =>
+                establishment(establishmentState, action)
+            )
+
+        case types.FILTER :
+            return state.map(establishmentState =>
+                establishment(establishmentState, action)
+            )
+
 
         case types.LIKE :
             return state.map(establishmentState =>
