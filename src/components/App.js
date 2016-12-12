@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo                 from '../assets/logo.svg'
 import '../css/App.css'
 
 import EstablishmentContainer   from '../containers/EstablishmentContainer'
@@ -29,36 +28,25 @@ class App extends Component {
         })
 
         return (
-            <div className="App">
+            <div className="App-intro">
 
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
+                <p> <a onClick={ this.props.randomPseudo } >Changer le pseudo !</a> </p>
 
-                    <h2>Welcome "{ this.props.state.app.pseudo }" to { this.props.title }</h2>
-
-
-                </div>
-
-                <div className="App-intro">
-
-                    <p> <a onClick={ this.props.randomPseudo } >Changer le pseudo !</a> </p>
-
-                    <div>
-                        <input type="text" placeholder="search" value={this.props.state.app.textFilter} onChange={this.handleChange}/>
-
-                    </div>
-
-                    <section>
-                        { listEstablishment }
-                    </section>
-
-                    <section>
-                        { this.props.state.app.dataFromAPI }
-                    </section>
+                <div>
+                    <input type="text" placeholder="search" value={this.props.state.app.textFilter} onChange={this.handleChange}/>
 
                 </div>
+
+                <section>
+                    { listEstablishment }
+                </section>
+
+                <section>
+                    { this.props.state.app.dataFromAPI }
+                </section>
 
             </div>
+
         )
     }
 }

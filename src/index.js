@@ -4,8 +4,13 @@ import ReactDOM from 'react-dom';
 import { createStore }  from 'redux'
 import { Provider }     from 'react-redux'
 
-import allReducers  from './reducers'
-import AppContainer from './containers/appContainer';
+import { Router, Route,IndexRoute, browserHistory }    from 'react-router'
+import { syncHistoryWithStore }             from 'react-router-redux'
+
+import allReducers          from './reducers'
+import AppContainer         from './containers/appContainer'
+import HomeContainer        from './containers/homeContainer'
+import HappyhourContainer   from './containers/happyhourContainer'
 
 import { persistStore, autoRehydrate } from 'redux-persist'
 
@@ -13,12 +18,20 @@ import './css/index.css';
 
 const store = createStore(allReducers, undefined, autoRehydrate())
 
+const history = syncHistoryWithStore(browserHistory, store)
+
 persistStore(store)
 
 ReactDOM.render(
     <Provider store={ store }>
 
-        <AppContainer title="HappyDrink"/>
+        <Router history={history}>
+            <Route path="/" component={(props) => <HomeContainer {...props} title="HappyDrink"/>}>
+                <IndexRoute component={AppContainer}/>
+                <Route path="/happyhour/:id" component={HappyhourContainer} />
+
+            </Route>
+        </Router>
 
     </Provider>,
 
