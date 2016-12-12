@@ -82,9 +82,12 @@ const establishmentsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case REHYDRATE :
-            return action.payload.establishments.map(establishmentState =>
-                establishment(establishmentState, action)
-            )
+
+            if(action.payload.establishments)
+                return action.payload.establishments.map(establishmentState =>
+                    establishment(establishmentState, action)
+                )
+            return state
 
         case types.FILTER :
             return state.map(establishmentState =>
