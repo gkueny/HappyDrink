@@ -5,7 +5,7 @@ import Happyhour    from '../components/establishments/Happyhour'
 const mapStateToProps = (state) => {
     return {
         state: {
-            establishments : state.establishments
+            establishments : state.establishments,
         }
     }
 }

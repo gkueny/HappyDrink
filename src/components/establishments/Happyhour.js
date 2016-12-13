@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
-import { Link , browserHistory} from 'react-router'
 
 class Happyhour extends Component {
 
     goBack = () =>
     {
-        browserHistory.goBack()
+        this.props.router.goBack()
     }
 
     render() {
 
-        console.log("porops : ", this.props);
-
-        let establishment = this.props.state.establishments.find((establishment) =>  establishment.id == this.props.params.id)
+        let establishment = this.props.state.establishments.find((establishment) =>  establishment.id === this.props.params.id)
 
         return (
             <div className='happyhour' >
