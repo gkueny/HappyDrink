@@ -10,6 +10,7 @@ establishments.map((establishment) => {
         id              : establishment.id,
         name            : establishment.name,
         description     : establishment.description,
+        happyhour       : establishment.happyhour,
         isLiked         : false,
         isDisliked      : false,
         likeCounter     : 0,
