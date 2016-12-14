@@ -37,7 +37,7 @@ class Establishment extends Component {
                     </div>
 
                     <div>
-                        <button ><Link to={url}>Voir l'happy-hour</Link></button>
+                        <Link to={url}>Voir l'happy-hour</Link>
                     </div>
 
 
