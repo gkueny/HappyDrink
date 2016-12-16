@@ -1,26 +1,7 @@
 import * as types from '../actions/actionsTypes'
 import {REHYDRATE} from 'redux-persist/constants'
 
-import { establishments } from '../components/establishments/fixtures'
-
 let initialState = []
-
-establishments.map((establishment) => {
-    initialState.push({
-        id              : establishment.id,
-        name            : establishment.name,
-        description     : establishment.description,
-        happyhour       : establishment.happyhour,
-        isLiked         : false,
-        isDisliked      : false,
-        likeCounter     : 0,
-        dislikeCounter  : 0,
-        favori          : false,
-        visible         : true
-    })
-    return establishment
-})
-
 
 const establishment = (state = {}, action) => {
 
@@ -31,6 +12,20 @@ const establishment = (state = {}, action) => {
               ...state,
               visible : true
           }
+
+        case types.ADDESTABLISHMENT:
+            return {
+                id              : action.data.establishment.id,
+                name            : action.data.establishment.name,
+                description     : action.data.establishment.description,
+                happyhour       : action.data.establishment.happyhour,
+                isLiked         : false,
+                isDisliked      : false,
+                likeCounter     : action.data.establishment.like,
+                dislikeCounter  : action.data.establishment.dislike,
+                favori          : false,
+                visible         : true
+            }
 
         case types.FILTER :
             return {
@@ -48,7 +43,7 @@ const establishment = (state = {}, action) => {
                 isLiked         : !state.isLiked,
                 isDisliked      : state.isDisliked ? !state.isDisliked : state.isDisliked,
                 likeCounter     : !state.isLiked ? state.likeCounter + 1 : state.likeCounter - 1,
-                dislikeCounter  : state.isDisliked ? state.dislikeCounter - 1 : 0
+                dislikeCounter  : state.isDisliked ? state.dislikeCounter - 1 : state.dislikeCounter
             }
 
         case types.DISLIKE :
@@ -59,7 +54,7 @@ const establishment = (state = {}, action) => {
                 ...state,
                 isLiked         : state.isLiked ? !state.isLiked : state.isLiked,
                 isDisliked      : !state.isDisliked,
-                likeCounter     : state.isLiked ? state.likeCounter - 1 : 0 ,
+                likeCounter     : state.isLiked ? state.likeCounter - 1 : state.likeCounter ,
                 dislikeCounter  : !state.isDisliked ? state.dislikeCounter + 1 : state.dislikeCounter - 1
             }
 
@@ -89,6 +84,12 @@ const establishmentsReducer = (state = initialState, action) => {
                     establishment(establishmentState, action)
                 )
             return state
+
+        case types.ADDESTABLISHMENT :
+            return [
+                ...state,
+                establishment(undefined, action)
+            ]
 
         case types.FILTER :
             return state.map(establishmentState =>

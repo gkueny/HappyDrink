@@ -4,9 +4,10 @@ import {REHYDRATE} from 'redux-persist/constants'
 
 
 const initialState = {
-    dataFromAPI : "",
-    pseudo      : "Inconnu",
-    textFilter  : ""
+    loadingAPI      : true,
+    loadingStorage  : true,
+    pseudo          : "Inconnu",
+    textFilter      : ""
 }
 
 const appReducer = (state = initialState, action) => {
@@ -21,17 +22,21 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...incoming,
-                textFilter : ""
+                loadingStorage  : false,
+                loadingAPI      : true,
+                textFilter      : ""
             }
-
-          return state
-
-        case types.SETDATAFROMAPI :
 
             return {
                 ...state,
-                dataFromAPI : action.data.text
+                loadingStorage  : false,
             }
+
+      case types.ENDDOWNLOAD :
+          return {
+              ...state,
+              loadingAPI : false
+          }
 
         case types.SETPSEUDO :
 

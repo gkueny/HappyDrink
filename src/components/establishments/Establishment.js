@@ -43,8 +43,8 @@ class Establishment extends Component {
 
                 </div>
                 <div className='establishmentLikeDislike' >
-                    <button onClick={() => this.props.like(id)}>{ upIcon } </button> <span>{ this.props.establishment.likeCounter }</span>
-                    <button onClick={() => this.props.dislike(id)}>{ downIcon }</button> <span>{ this.props.establishment.dislikeCounter }</span>
+                    <button onClick={() => this.props.like(this.props.establishment, this.props.establishment.isLiked)}>{ upIcon } </button> <span>{ this.props.establishment.likeCounter }</span>
+                    <button onClick={() => this.props.dislike(this.props.establishment, this.props.establishment.isDisliked)}>{ downIcon }</button> <span>{ this.props.establishment.dislikeCounter }</span>
                 </div>
 
 

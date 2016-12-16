@@ -1,6 +1,7 @@
 import { connect }      from 'react-redux'
 
 import * as appActions  from '../actions/appActions'
+import * as establishmentActions  from '../actions/establishmentActions' // add
 
 import App              from '../components/App'
 
@@ -15,20 +16,28 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getDataFromApi : () => {
+        getEstablishmentsFromApi : () => {
 
-            console.log("getDataFromApi");
-            const random = Math.floor(Math.random() * 99) + 1
-
-            fetch('https://jsonplaceholder.typicode.com/posts/' + random)
+            fetch('http://localhost:3000/establishments')
                 .then((response) => response.json())
-                .then((responseJson) => {
-                    dispatch(appActions.setDataFromApi(responseJson.body))
+                .then((establishments) => {
+
+                    establishments.forEach((establishment) => {
+                        dispatch(establishmentActions.addEstablishment(establishment))
+                    })
+
+                    setTimeout(() => {
+                        dispatch(appActions.endDownload())
+                    }, 1500)
+
+
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         },
+
+        endDownload : () => dispatch(appActions.endDownload()),
 
         randomPseudo : () => {
             let randomPseudo    = ""

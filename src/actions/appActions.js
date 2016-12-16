@@ -1,15 +1,5 @@
 import * as types from './actionsTypes'
 
-export function setDataFromApi(text) {
-
-    return {
-        type: types.SETDATAFROMAPI,
-        data: {
-            text : text
-        }
-    }
-}
-
 export function setPseudo(pseudo) {
 
     return {
@@ -27,5 +17,11 @@ export function filter(text) {
         data: {
             text : text
         }
+    }
+}
+
+export function endDownload(text) {
+    return {
+        type: types.ENDDOWNLOAD
     }
 }

@@ -29,3 +29,13 @@ export function favori(idEstablishment) {
         }
     }
 }
+
+export function addEstablishment(establishment) {
+
+    return {
+        type: types.ADDESTABLISHMENT,
+        data: {
+            establishment : establishment
+        }
+    }
+}

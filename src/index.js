@@ -20,7 +20,10 @@ const store = createStore(allReducers, undefined, autoRehydrate())
 
 const history = syncHistoryWithStore(browserHistory, store)
 
-persistStore(store)
+setTimeout(() => {
+    persistStore(store)//.purge()
+}, 1500)
+
 
 ReactDOM.render(
     <Provider store={ store }>

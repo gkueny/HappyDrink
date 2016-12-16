@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
+
+import ring from '../assets/ring.gif'
 import '../css/App.css'
 
 import EstablishmentContainer   from '../containers/EstablishmentContainer'
 
 class App extends Component {
 
-    componentDidMount () {
-
-        this.props.getDataFromApi()
+    componentDidMount()
+    {
+        if ( this.props.state.establishments.length === 0 ) {
+            this.props.getEstablishmentsFromApi()
+        } else {
+            this.props.endDownload()
+        }
     }
 
     handleChange = (e) => {
@@ -38,11 +44,18 @@ class App extends Component {
                 </div>
 
                 <section>
-                    { listEstablishment }
-                </section>
 
-                <section>
-                    { this.props.state.app.dataFromAPI }
+                    { this.props.state.app.loadingAPI ?
+                        <div className="App-intro">
+                            <div className="loader">
+                                <img src={ring} className="loader-gif" alt="logo" />
+                            </div>
+                        </div>
+                        :
+                        listEstablishment
+
+                    }
+
                 </section>
 
             </div>
@@ -51,4 +64,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default App
